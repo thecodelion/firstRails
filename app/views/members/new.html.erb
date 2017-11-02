@@ -1,0 +1,22 @@
+
+
+<%= form_for @member, url: members_path, html: { multipart: true } do |m| %>
+
+<p></p>
+<h1>
+  <%= m.file_field :image, class: "imageUploaderText"%></h1>
+
+  <%= m.label :firstname %>
+  <span class="inputBg"> <%= m.text_field :firstname%></span><br>
+
+  <%= m.label :lastname %>
+  <%= m.text_field :lastname %><br>
+
+  <%= m.label :number %>
+  <%= m.text_field :number %><br><br>
+
+  <div class="select"><%= m.select :category_id, options_for_select(@categories) %></div>
+
+  <%= m.submit class: "submitter"%>
+
+<% end %>

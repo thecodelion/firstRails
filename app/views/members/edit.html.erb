@@ -1,0 +1,21 @@
+
+
+
+<%= form_for @member do |m| %>
+
+  <%= m.file_field :image %>
+
+  <%= m.label :firstname %>
+  <%= m.text_field :firstname %>
+
+  <%= m.label :lastname %>
+  <%= m.text_field :lastname %>
+
+  <%= m.label :number %>
+  <%= m.text_field :number %>
+
+  <%= m.select :category_id, @categories %>
+
+  <%= m.submit class: "submitter"%>
+
+<% end %>

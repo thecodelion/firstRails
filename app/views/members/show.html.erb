@@ -1,0 +1,29 @@
+
+<%= @member.firstname %>
+<%= @member.lastname %>
+<%= @member.number %>
+
+<%= image_tag @member.image.url(:medium), class:"profileImage" %>
+
+
+<%= form_for ([@member, @member.comments.build]) do |c| %>
+
+  <%= c.label :title %>
+  <%= c.text_field :title %>
+
+  <%= c.label :message %>
+  <%= c.text_field :message %>
+
+  <%= c.submit class: "submitter" %>
+
+<% end %>
+
+<% @member.comments.each do |cc| %>
+  <% next unless cc.persisted? %>
+  <%= cc.title %>
+  <%= cc.message %>
+  <%= link_to 'delete', [cc.member, cc], method: :delete, data:{confirm:"Are you sure?"} %>
+  <%= "#{time_ago_in_words(cc.created_at)} ago"%>
+  <br>
+
+<% end %>

@@ -1,0 +1,45 @@
+
+
+<ul>
+  <li>Rider</li>
+  <li>Class</li>
+  <li>Standing</li>
+</ul>
+
+<span>Comments: </span><span class="commentsNumber"><%= Comment.all.count %></span>
+
+<table>
+  <th></th>
+  <th></th>
+  <th></th>
+  <th></th>
+  <th></th>
+  <th></th>
+  <th></th>
+  <th></th>
+  <tbody>
+<% @members.each do |m| %>
+<tr>
+  <td><%= link_to m.firstname, member_path(m) %></td>
+  <td><%= m.lastname %></td>
+  <td><%= m.number %></td>
+  <td><%= m.comments.count %></td>
+    <td>
+      <% m.comments.each do |mc| %>
+      <span id="linkers"><%= mc.title %></span>
+      <% end %>
+
+    </td>
+
+  <td><%= m.category.name %></td>
+
+  <td><%= link_to 'edit', edit_member_path(m) %></td>
+  <td><%= link_to 'delete', member_path(m), method: :delete, data: {confirm: "Are you sure?"} %></td>
+</tr>
+
+
+<% end %>
+</tbody>
+</table>
+<br>
+<%= link_to 'new', new_member_path %>
